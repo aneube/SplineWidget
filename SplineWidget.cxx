@@ -24,11 +24,18 @@ int main(int, char *[])
   splineWidget->SetInteractor(renderWindowInteractor);
   
 
-  //vtkSmartPointer<vtkSplineRepresentation> rep1 = vtkSmartPointer<vtkSplineRepresentation>::New();
-  //rep1->SetHandleSize(10.);
-  //splineWidget->SetRepresentation(rep1);
-  splineWidget->GetRepresentation()->SetHandleSize(10);
-  splineWidget->GetRepresentation()->SetResolution(10);
+  vtkSmartPointer<vtkSplineRepresentation> rep1 = vtkSmartPointer<vtkSplineRepresentation>::New();
+  rep1->SetHandleSize(5.);
+  rep1->SetNumberOfHandles(3);
+  double position[3];
+  position[0] = 1;
+  position[1] = 1;
+  position[2] = 1;
+  rep1->SetHandlePosition(0,position);
+
+
+  splineWidget->SetRepresentation(rep1);
+  //splineWidget->GetRepresentation()->SetHandleSize(10);
 
   renderWindowInteractor->Initialize();
   renderWindow->Render();
@@ -36,10 +43,15 @@ int main(int, char *[])
   splineWidget->On();
   renderer->ResetCamera();
   renderWindowInteractor->Start();
-  
-  std::cout << splineWidget->GetRepresentation()->GetNumberOfConsumers() << std::endl;
-  std::cout << splineWidget->GetRepresentation()->GetNumberOfPaths() << std::endl;
-  std::cout << splineWidget->GetRepresentation()-> << std::endl;
+
+  rep1->GetHandlePosition(0,position);
+  std::cout << "0: " << position[0] << " " << position[1] << " " << position[2] << std::endl;
+
+  rep1->GetHandlePosition(1,position);
+  std::cout << "1: " << position[0] << " " << position[1] << " " << position[2] << std::endl;
+
+  rep1->GetHandlePosition(2,position);
+  std::cout << "2: " << position[0] << " " << position[1] << " " << position[2] << std::endl;
 
   return EXIT_SUCCESS;
 }
