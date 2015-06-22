@@ -28,7 +28,7 @@ int main(int, char *[])
   //rep1->SetHandleSize(10.);
   //splineWidget->SetRepresentation(rep1);
   splineWidget->GetRepresentation()->SetHandleSize(10);
-  splineWidget->GetRepresentation()->SetNumberOfHandles(3);
+  splineWidget->GetRepresentation()->SetResolution(10);
 
   renderWindowInteractor->Initialize();
   renderWindow->Render();
