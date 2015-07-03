@@ -4,6 +4,7 @@
 #include <vtkSmartPointer.h>
 #include <vtkSplineWidget2.h>
 #include "vtkSplineRepresentation.h"
+#include <vtkProperty.h>
 
 int main(int, char *[])
 {
@@ -25,14 +26,24 @@ int main(int, char *[])
   
 
   vtkSmartPointer<vtkSplineRepresentation> rep1 = vtkSmartPointer<vtkSplineRepresentation>::New();
-  rep1->SetHandleSize(5.);
-  rep1->SetNumberOfHandles(3);
+  rep1->SetHandleSize(9);
+  rep1->SetNumberOfHandles(5);
   double position[3];
   position[0] = 1;
-  position[1] = 0.5;
-  position[2] = 1;
+  position[1] = 3;
+  position[2] = 10;
   rep1->SetHandlePosition(0,position);
 
+  position[0] = 2;
+  position[1] = 5;
+  position[2] = 7;
+  rep1->SetHandlePosition(4, position);
+
+  /*
+  vtkSmartPointer<vtkProperty> colorProperty;
+  colorProperty->SetColor(0.5, 0.5, 0.5);
+  rep1->SetHandleProperty(colorProperty);
+  */
 
   splineWidget->SetRepresentation(rep1);
   //splineWidget->GetRepresentation()->SetHandleSize(10);
