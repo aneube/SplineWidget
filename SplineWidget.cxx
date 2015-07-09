@@ -6,11 +6,7 @@
 #include "vtkSplineRepresentation.h"
 #include <vtkProperty.h>
 #include <vtkIOStream.h>
-#include <vtkASCIITextCodec.h>
-#include <vtkDataSetWriter.h>
-#include <vtkDelimitedTextWriter.h>
-#include <vtkSimplePointsWriter.h>
-//#include <fstream.h>
+#include <fstream>
 
 
 int main(int, char *[])
@@ -82,18 +78,17 @@ int main(int, char *[])
 	  rep1->GetHandlePosition(i,position);
 	  std::cout << i << ": " << position[0] << " " << position[1] << " " << position[2] << std::endl;
   }
-  
-  return EXIT_SUCCESS;
 
   ofstream myfile;
   myfile.open("basantSpline.txt");
-  myfile <<"SPlineSpine";
+  myfile << "SplineSpine" << std::endl;
   for (int i = 0; i<rep1->GetNumberOfHandles(); ++i)
   {
 	  rep1->GetHandlePosition(i, position);
-	  std::cout << i << ": " << position[0] << " " << position[1] << " " << position[2] << std::endl;
+	  myfile << i << ": " << position[0] << " " << position[1] << " " << position[2] << std::endl;
   }
   myfile.close();
-  return 0;
+  
+  return EXIT_SUCCESS;
 
 }
