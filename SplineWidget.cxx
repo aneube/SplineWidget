@@ -7,6 +7,7 @@
 #include <vtkProperty.h>
 #include <vtkIOStream.h>
 #include <fstream>
+#include <string>
 
 
 int main(int, char *[])
@@ -79,16 +80,31 @@ int main(int, char *[])
 	  std::cout << i << ": " << position[0] << " " << position[1] << " " << position[2] << std::endl;
   }
 
+  using namespace std;
+    
+  ifstream file("SplineSpine.txt");
+  string content;
+  if (file.is_open())
+  {
+	  while (getline(file, content))
+	  {
+		  cout << content << "\n";
+	  }
+	  cout << "Read Successfully \n \n";
+	  file.close();
+  }
+  else
+	  cout << "Unable to open file \n \n";
+
   ofstream myfile;
-  myfile.open("basantSpline.txt");
-  myfile << "SplineSpine" << std::endl;
+  myfile.open("SplineSpine.txt");
+  myfile << "\n SplineSpine" << std::endl<<"\n";
   for (int i = 0; i<rep1->GetNumberOfHandles(); ++i)
   {
 	  rep1->GetHandlePosition(i, position);
-	  myfile << i << ": " << position[0] << " " << position[1] << " " << position[2] << std::endl;
+	  myfile << i << ": " << position[0] << "  " << position[1] << "  " << position[2] << std::endl<<"\n";
   }
   myfile.close();
   
   return EXIT_SUCCESS;
-
 }
